@@ -19,6 +19,6 @@ from VICHealth_app import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.home_page, name = 'Home'),
+    path('', views.index, name = 'Home'),
     path('VICHealth_app/', include('VICHealth_app.urls')),
 ]

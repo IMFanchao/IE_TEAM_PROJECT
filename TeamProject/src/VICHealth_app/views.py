@@ -1,8 +1,8 @@
 from django.shortcuts import render
 
 # Create your views here.
-def home_page(request):
-    return render(request, 'VICHealth_app/home.html')
+def base(request):
+    return render(request, 'VICHealth_app/base.html')
 
 def index(request):
     return render(request, 'VICHealth_app/index.html')
