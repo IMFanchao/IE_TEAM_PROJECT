@@ -1,5 +1,59 @@
-<!DOCTYPE html>
 {% extends "VICHealth_app/base.html"%}
  {%block body_block%}
-    <h1>Check Activity Level</h1>
-  {% endblock %}
+ <div class="container-fluid">
+  <br>
+  <div class="row">
+  <!-- user input below  -->
+  <div class="col-4 activity_input">
+  <form id="form">
+   <div class="form-group">
+     <label for="selectAge">Please Select Your Child Age Group</label>
+     <select class="form-control" name="" id="selectAge">
+       <option value="1">Form 0 todo 4</option>
+       <option value="2">Form 5 todo 8</option>
+       <option value="3">Form 9 todo 12</option>
+     </select>
+   </div>
+   <!-- choose activity and hours -->
+   <div id='activity_list'>
+     <div class="form-row ac_row" id="ac_row_1">
+       <div class="col-4">
+          <select class="form-control ac_select">
+            <option value="0">Choose Activity</option>
+            <option value="1">Swimming</option>
+            <option value="2">Walking</option>
+            <option value="3">Runing</option>
+          </select>
+        </div>
+        <div class="col-4">
+          <input type="text" class="form-control" placeholder="Hour per week?" onkeyup="this.value=this.value.replace(/\D/g,'')">
+        </div>
+        <div class="col-4">
+          <button type="button" class="btn btn-primary add_ac"> +Add </button>
+          <button type="button" class="btn btn-danger del_ac">Delete</button>
+        </div>
+      </div>
+    </div>
+    <br id='beforeThis'>
+    <button class="btn btn-success" type="button" id="check">Check</button>
+  </form>
+</div>
+
+<!-- Analyzing user data -->
+<div class="col activity_ana">
+  <div id="upAna">
+    <div id="anaBar" ></div>
+  </div>
+  <p id="test"> test </p>
+  <div class="round"></div>
+</div>
+
+<!-- Risk and Benefit -->
+<div class="col bene_risk">
+<h1>If you keep this activity level</h1>
+ <div id="bene">
+   <h1></h1>
+ </div>
+</div>
+</div>
+</div>  {% endblock %}
