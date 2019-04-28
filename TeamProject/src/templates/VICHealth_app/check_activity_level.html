@@ -20,9 +20,18 @@
        <div class="col-4">
           <select class="form-control ac_select">
             <option value="0">Choose Activity</option>
-            <option value="1">Swimming</option>
-            <option value="2">Walking</option>
-            <option value="3">Runing</option>
+            <option value="6">Swimming</option>
+            <option value="6">Basketball</option>
+            <option value="5">Bicycling - 24mph</option>
+            <option value="5">Golf</option>
+            <option value="8">Hockey</option>
+            <option value="12">Running 8 min/mile</option>
+            <option value="8">Running 12 min/mile</option>
+            <option value="8">Racquetball</option>
+            <option value="7">Skating ice/roller</option>
+            <option value="7">Tennis</option>
+            <option value="4">Volleyball</option>
+            <option value="3">Walking</option>
           </select>
         </div>
         <div class="col-4">
@@ -42,18 +51,41 @@
 <!-- Analyzing user data -->
 <div class="col activity_ana">
   <div id="upAna">
-    <div id="anaBar" ></div>
+    <div class="chart" data-percent="0" data-scale-color="#ffb400"><span id="precentage">0</span>%</div>
+    <script>
+      $(function() {
+        $('.chart').easyPieChart({
+          barColor: function (percent) {
+            return (percent > 50 ? '#5cb85c' : percent > 10 ? '#f0ad4e' : '#cb3935');
+          },
+          size: 300,
+          scaleLength: 7,
+          trackWidth: 5,
+          lineWidth: 5,
+
+          onStep: function (from, to, percent) {
+            $(this.el).find('.percent').text(Math.round(percent));
+          }
+        });
+      });
+    </script>
+    <h2 id="printLevel">Activity Level</h2>
   </div>
-  <p id="test"> test </p>
-  <div class="round"></div>
 </div>
 
 <!-- Risk and Benefit -->
 <div class="col bene_risk">
-<h1>If you keep this activity level</h1>
- <div id="bene">
-   <h1></h1>
+<h1>Reduce Risks of Illness</h1>
+ <div id="Risk">
+   <ul>
+     <li>Ischaemic Stroke <span class="risk_de_rate" id="IS">%</span></li>
+     <li>Diabets <span class="risk_de_rate" id="DI">%</span></li>
+     <li>Ischaemic Heart Diease<span class="risk_de_rate" id="IHD">%</span></li>
+     <li>Colon Cancer <span class="risk_de_rate" id="CC">%</span> </li>
+   </ul>
  </div>
+
 </div>
 </div>
-</div>  {% endblock %}
+</div>
+{% endblock %}
