@@ -1,55 +1,6 @@
 <!DOCTYPE html>
 {% extends "VICHealth_app/base.html"%}
  {%block body_block%}
-
-	<div class="tab">
-  		<button class="Types"  onclick="changeType(event,'HIA')">High Intensive Activity</button>
-  		<button class="Types"  onclick="changeType(event,'NIA')">Normal Intensive Activity</button>
-	</div>
-
-	<div class="vtab" id ="HIA">
-		<button class="ac_name" onclick="seeDetails(event,'walking')">walking</button>
-		<button class="ac_name" onclick="seeDetails(event,'bicycling')">bicycling</button>
-	</div>
-	<div class="vtab" id ="NIA">
-		<button class="ac_name" onclick="seeDetails(event,'soccer')">soccer</button>
-		<button class="ac_name" onclick="seeDetails(event,'football')">football</button>
-	</div>
-
-	<div class="ac_detail" id="walking">walking</div>
-	<div class="ac_detail" id="bicycling">bicycling</div>
-	<div class="ac_detail" id="soccer">soccer</div>
-	<div class="ac_detail" id="football">football</div>
-
-
-    <script>
-  		function changeType(evt, type) {
-  			// body...
-  			var i, tablink, tabcontent
-  			tabcontent = document.getElementsByClassName("vtab");
-  			for (i = 0; i < tabcontent.length; i++) {
-  				tabcontent[i].style.display = "none";
-  			}
-  			tablink = document.getElementsByClassName("Type");
-  			for (i = 0; i < tablink.length; i++){
-  				tablink[i].className = tablink[i].className.replace(" active", "");
-  			}
-  			document.getElementById(type).style.display = "block";
-    			evt.currentTarget.className += " active";
-  		}
-
-  		function seeDetails(evt, ac_name){
-  			var i, names, ac
-  			ac = document.getElementsByClassName("ac_detail");
-  			for (i = 0; i < ac.length; i++) {
-  				ac[i].style.display = "none";
-  			}
-  			names = document.getElementsByClassName("ac_name");
-  			for (i = 0; i < ac.length; i++){
-  				names[i].className =names[i].className.replace(" active", "")
-  			}
-  			document.getElementById(ac_name).style.display = "block";
-  			evt.currentTarget.className += " active";
-  		}
-  	</script>
+    <h1>This is Healthy Tips</h1>
+    <p>stylesheet</p>
 {% endblock %}

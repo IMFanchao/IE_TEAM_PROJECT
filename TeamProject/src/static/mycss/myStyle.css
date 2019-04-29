@@ -1,8 +1,5 @@
-b{
-  font-size: 20px;
-}
 .Home_div{
-  width: 100%;
+  width: 100%
 }
 .OnHomePagePic{
   width: 100%;
@@ -31,13 +28,12 @@ b{
 
 .wrap {
 	left: 50%;
+
 	text-align: center;
-
-
 }
 
 .myButton {
-  display: inline-block;
+	display: block;
 	margin: 20px auto;
 	max-width: 300px;
 	text-decoration: none;
@@ -64,3 +60,10 @@ a.myButton:hover {
 	color: rgba(255, 255, 255, 0.85);
 	box-shadow: rgba(30, 22, 54, 0.7) 0 0px 0px 40px inset;
 }
+
+
+#map {
+  width: 100%;
+  height: 400px;
+  background-color: grey;
+ }
