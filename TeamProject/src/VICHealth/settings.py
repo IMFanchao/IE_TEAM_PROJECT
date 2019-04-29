@@ -33,7 +33,7 @@ IMPORT_EXPORT_USE_TRANSACTIONS = True
 
 # Google map API key
 
-GEOPOSITION_GOOGLE_MAPS_API_KEY = 'AIzaSyCNt9TA3Saqo5CiQ0QxN-C2oPIq8JfQalg'
+GOOGLE_MAPS_API_KEY = 'AIzaSyCNt9TA3Saqo5CiQ0QxN-C2oPIq8JfQalg'
 # Application definition
 
 INSTALLED_APPS = [
@@ -46,8 +46,6 @@ INSTALLED_APPS = [
     'VICHealth_app',
     # Import and export csv
     'import_export',
-    # Google map
-    'geoposition',
 ]
 
 MIDDLEWARE = [
@@ -132,12 +130,3 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     STATIC_DIR,
 ]
-
-GEOPOSITION_MAP_OPTIONS = {
-    'minZoom': 3,
-    'maxZoom': 15,
-}
-
-GEOPOSITION_MARKER_OPTIONS = {
-    'cursor': 'move'
-}

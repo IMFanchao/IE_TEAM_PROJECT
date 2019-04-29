@@ -1,6 +1,65 @@
 <!DOCTYPE html>
 {% extends "VICHealth_app/base.html"%}
  {%block body_block%}
-    <h1>This is Healthy Tips</h1>
-    <p>stylesheet</p>
+
+	<div class="tab">
+  		<button class="Types"  onclick="changeType(event,'HIA')">High Intensive Activity</button>
+  		<button class="Types"  onclick="changeType(event,'NIA')">Normal Intensive Activity</button>
+	</div>
+
+	<div class="vtab" id ="HIA">
+    <button class="ac_name" onclick="seeDetails(event,'soccer')">soccer</button>
+    <button class="ac_name" onclick="seeDetails(event,'football')">football</button>
+	</div>
+	<div class="vtab" id ="NIA">
+    <button class="ac_name" onclick="seeDetails(event,'walking')">walking</button>
+    <button class="ac_name" onclick="seeDetails(event,'bicycling')">bicycling</button>
+	</div>
+
+	<div class="ac_detail" id="walking">Walking is already part of our daily life but try walk fast with kids! A recommended walking steps for children from age 8 can be different: 12,000 steps for girls per day and for boys a recommendation would be 15,000 steps per day.</div>
+	<div class="ac_detail" id="bicycling">
+    <p>
+      Whether you're young or old, athletic or sedentary, bicycling is an enjoyable and healthy way to travel and experience the outdoors. Done vigorously, it gives the heart and circulatory system a workout and can burn more than 500 calories per hour. The development of new types of bicycles—notably the hybrid, which combines the speed of a road bike and the ruggedness of a mountain bike—has made riding easier and offers more options to suit your specific needs. What's more, cyclists now have more places to ride. Here, ways to improve your performance, safety and comfort when cycling.
+    </p>
+    <p>
+      More than 6,000 cyclists seek emergency care for head injuries each year in the U.S., and head trauma accounts for 75 percent of cycling fatalities. Used properly, bike helmets are nearly 90 percent effective in preventing brain injuries. Choose a helmet that meets the standards of the U.S. Consumer Product Safety Commission. Or, look for a sticker from the Snell Memorial Foundation or the American Society of Testing and Materials. Pick a bright color and a helmet that fits snugly.
+    </p>
+    <p>
+      Buying a new bike? To find the right frame size for your body, straddle the bike and stand flat-footed. On a road bike, there should be one to two inches of clearance between your groin and the top tube. On a mountain bike, the clearance should be at least two inches.Your handlebars should be one inch lower than your seat top. Buy your bicycle from a reputable dealer who will help you find the right bike and fit.
+    </p>
+  </div>
+	<div class="ac_detail" id="soccer">soccer</div>
+	<div class="ac_detail" id="football">football</div>
+
+
+    <script>
+  		function changeType(evt, type) {
+  			// body...
+  			var i, tablink, tabcontent
+  			tabcontent = document.getElementsByClassName("vtab");
+  			for (i = 0; i < tabcontent.length; i++) {
+  				tabcontent[i].style.display = "none";
+  			}
+  			tablink = document.getElementsByClassName("Type");
+  			for (i = 0; i < tablink.length; i++){
+  				tablink[i].className = tablink[i].className.replace(" active", "");
+  			}
+  			document.getElementById(type).style.display = "block";
+    			evt.currentTarget.className += " active";
+  		}
+
+  		function seeDetails(evt, ac_name){
+  			var i, names, ac
+  			ac = document.getElementsByClassName("ac_detail");
+  			for (i = 0; i < ac.length; i++) {
+  				ac[i].style.display = "none";
+  			}
+  			names = document.getElementsByClassName("ac_name");
+  			for (i = 0; i < ac.length; i++){
+  				names[i].className =names[i].className.replace(" active", "")
+  			}
+  			document.getElementById(ac_name).style.display = "block";
+  			evt.currentTarget.className += " active";
+  		}
+  	</script>
 {% endblock %}

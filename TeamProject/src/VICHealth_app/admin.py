@@ -1,7 +1,5 @@
 from django.contrib import admin
 
-from mapwidgets.widgets import GooglePointFieldWidget
-
 from import_export.admin import ImportExportModelAdmin
 from import_export import resources
 from .models import Club

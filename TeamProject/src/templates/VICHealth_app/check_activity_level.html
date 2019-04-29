@@ -1,12 +1,91 @@
-<!DOCTYPE html>
 {% extends "VICHealth_app/base.html"%}
  {%block body_block%}
-    <h1>Check Activity Level</h1>
-    <div class="container">
-      <form method="post">
-        {% csrf_token %}
-        <input type="submit" class="btn btn-primary" value="submit">
-      </form>
+ <div class="container-fluid">
+  <br>
+  <div class="row">
+  <!-- user input below  -->
+  <div class="col-4 activity_input">
+  <form id="form">
+   <div class="form-group">
+     <label for="selectAge">Please Select Your Child Age Group</label>
+     <select class="form-control" name="" id="selectAge">
+       <option value="1">Form 0 todo 4</option>
+       <option value="2">Form 5 todo 8</option>
+       <option value="3">Form 9 todo 12</option>
+     </select>
+   </div>
+   <!-- choose activity and hours -->
+   <div id='activity_list'>
+     <div class="form-row ac_row" id="ac_row_1">
+       <div class="col-4">
+          <select class="form-control ac_select">
+            <option value="0">Choose Activity</option>
+            <option value="6">Swimming</option>
+            <option value="6">Basketball</option>
+            <option value="5">Bicycling - 24mph</option>
+            <option value="5">Golf</option>
+            <option value="8">Hockey</option>
+            <option value="12">Running 8 min/mile</option>
+            <option value="8">Running 12 min/mile</option>
+            <option value="8">Racquetball</option>
+            <option value="7">Skating ice/roller</option>
+            <option value="7">Tennis</option>
+            <option value="4">Volleyball</option>
+            <option value="3">Walking</option>
+          </select>
+        </div>
+        <div class="col-4">
+          <input type="text" class="form-control" placeholder="Hour per week?" onkeyup="this.value=this.value.replace(/\D/g,'')">
+        </div>
+        <div class="col-4">
+          <button type="button" class="btn btn-primary add_ac"> +Add </button>
+          <button type="button" class="btn btn-danger del_ac">Delete</button>
+        </div>
+      </div>
     </div>
+    <br id='beforeThis'>
+    <button class="btn btn-success" type="button" id="check">Check</button>
+  </form>
+</div>
 
-  {% endblock %}
+<!-- Analyzing user data -->
+<div class="col activity_ana">
+  <div id="upAna">
+    <div class="chart" data-percent="0" data-scale-color="#ffb400"><span id="precentage">0</span>%</div>
+    <script>
+      $(function() {
+        $('.chart').easyPieChart({
+          barColor: function (percent) {
+            return (percent > 50 ? '#5cb85c' : percent > 10 ? '#f0ad4e' : '#cb3935');
+          },
+          size: 300,
+          scaleLength: 7,
+          trackWidth: 5,
+          lineWidth: 5,
+
+          onStep: function (from, to, percent) {
+            $(this.el).find('.percent').text(Math.round(percent));
+          }
+        });
+      });
+    </script>
+    <h2 id="printLevel">Activity Level</h2>
+  </div>
+</div>
+
+<!-- Risk and Benefit -->
+<div class="col bene_risk">
+<h1>Reduce Risks of Illness</h1>
+ <div id="Risk">
+   <ul>
+     <li>Ischaemic Stroke <span class="risk_de_rate" id="IS">%</span></li>
+     <li>Diabets <span class="risk_de_rate" id="DI">%</span></li>
+     <li>Ischaemic Heart Diease<span class="risk_de_rate" id="IHD">%</span></li>
+     <li>Colon Cancer <span class="risk_de_rate" id="CC">%</span> </li>
+   </ul>
+ </div>
+
+</div>
+</div>
+</div>
+{% endblock %}
