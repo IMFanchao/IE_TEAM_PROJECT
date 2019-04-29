@@ -11,6 +11,55 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="{% static 'myjs/myjs.js'%}"></script>
     <script src="{% static 'myjs/jquery.easypiechart.js'%}"></script>
+    <style type="text/css">
+      .tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+  }
+.tab button{
+  font-size: 20px;
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+  }
+
+.tab button:hover {
+    background-color: #ddd;
+  }
+.vtab{
+  display: none;
+  float: left;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+    width: 15%;
+    height: 1000px;
+}
+.vtab button{
+    display: block;
+    background-color: inherit;
+    color: black;
+    padding: 22px 16px;
+    width: 100%;
+    border: none;
+    outline: none;
+    text-align: left;
+    cursor: pointer;
+  transition: 0.3s;
+  font-size: 17px;
+}
+.vtab button:hover {
+    background-color: #ddd;
+  }
+.ac_detail{
+  display: none;
+  }
+
+    </style>
   </head>
   <body>
     <header class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
