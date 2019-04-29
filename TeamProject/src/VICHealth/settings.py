@@ -26,7 +26,7 @@ SECRET_KEY = '$b#g!%+_-1q&njxl5n!tbb6_7c4n87g)_6&gq44fsjwz@8=ecj'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["35.244.122.152"]
 
 # The library will use database transactions on data import from database
 IMPORT_EXPORT_USE_TRANSACTIONS = True
