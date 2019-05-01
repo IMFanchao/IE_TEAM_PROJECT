@@ -69,6 +69,7 @@ $(document).ready(function(){
 		}
 
 	$("#check").click(function(){
+		var printScore,acture_value;
     var ac_level = 0;
 		var age_group = parseInt($("#selectAge").val());
 
@@ -83,53 +84,130 @@ $(document).ready(function(){
 
 		var finalAcList = combineList(hrList, acList);
 		var score = calculateAcLevel(age_group, finalAcList);
-    if (score<= 600) {
-      ac_level = 1;
-			$('#printLevel').text("Lack of exercise");
-    }
-    else if ((score>600) && (score<= 4000)) {
-      ac_level = 2;
-			$('#printLevel').text("Still need more exercise");
-			$("#DI").text("14%");
-			$("#CC").text("10%");
-			$("#IHD").text("16%");
-			$("#IS").text("16%");
-    }
-    else if ((score>4000) && (score<=8000)) {
-      ac_level = 3;
-			$('#printLevel').text("Well done, keep it");
-			$("#DI").text("25%");
-			$("#CC").text("17%");
-			$("#IHD").text("23%");
-			$("#IS").text("19%");
-    }
-    else if ((score>8000) && (score<=10000)){
-      ac_level = 4;
-			$('#printLevel').text("sufficient exercise");
-			$("#DI").text("28%");
-			$("#CC").text("21%");
-			$("#IHD").text("25%");
-			$("#IS").text("26%");
-    }
-    else {
-      ac_level = 5;
-			$('#printLevel').text("Excessive exercise may hurt the body");
-			$("#DI").text("28%");
-			$("#CC").text("21%");
-			$("#IHD").text("25%");
-			$("#IS").text("26%");
-    }
 
-		$('.chart').data('easyPieChart').update((score/10000)*100);
-		var printValue = 0;
-		if (((score/10000)*100)>100) {
-			 printValue = 100;
-		}
-		else {
-			 printValue = (score/10000)*100;
+		switch (age_group) {
+			case 1:
+				if (score<=6000) {
+					printScore = (score/6000)*100;
+					if (score < 600) {
+						acture_value = 1;
+					}
+					else if(score >= 600 && score < 3000){
+						acture_value = 2;
+					}
+					else {
+						acture_value = 3;
+					}
+				}
+				else if(score>6000 && score <8000){
+					printScore = 100;
+					acture_value = 4;
+				}
+				else {
+					printScore = 200 - ((score/6000)*100);
+					if (printScore < 60) {
+						printScore = 20;
+					}
+					acture_value = 5;
+				}
+
+				break;
+			case 2:
+				if (score<=7000) {
+					printScore = (score/7000)*100;
+					if (score < 700) {
+						acture_value = 1;
+					}
+					else if(score >= 700 && score < 3500){
+						acture_value = 2;
+					}
+					else {
+						acture_value = 3;
+					}
+				}
+				else if(score>7000 && score <9000){
+					printScore = 100;
+					acture_value = 4;
+				}
+				else {
+					printScore = 200-((score/7000)*100);
+					if (printScore < 60) {
+						printScore = 20;
+					}
+					acture_value = 5;
+				}
+
+				break;
+			case 3:
+				if (score<=8000) {
+					printScore = (score/8000)*100;
+					if (score < 800) {
+						acture_value = 1;
+					}
+					else if(score >= 800 && score < 4000){
+						acture_value = 2;
+					}
+					else {
+						acture_value = 3;
+					}
+				}
+				else if(score> 8000 && score < 10000){
+					printScore = 100;
+					acture_value = 4;
+				}
+				else {
+					printScore = 200-((score/8000)*100);
+					if (printScore < 60) {
+						printScore = 20;
+					}
+					acture_value = 5;
+				}
+
+				break;
 		}
 
-		$('#precentage').text(printValue.toFixed(2));
+		switch (acture_value) {
+			case 1:
+				$('#printLevel').text("Lack of exercise");
+
+				break;
+			case 2:
+				$('#printLevel').text("Still need more exercise");
+				$("#DI").text("14%");
+				$("#CC").text("10%");
+				$("#IHD").text("16%");
+				$("#IS").text("16%");
+
+				break;
+			case 3:
+				$('#printLevel').text("Well done, keep it");
+				$("#DI").text("25%");
+				$("#CC").text("17%");
+				$("#IHD").text("23%");
+				$("#IS").text("19%");
+
+				break;
+			case 4:
+				$('#printLevel').text("sufficient exercise");
+				$("#DI").text("28%");
+				$("#CC").text("21%");
+				$("#IHD").text("25%");
+				$("#IS").text("26%");
+
+				break;
+			case 5:
+				$('#printLevel').text("Excessive exercise may hurt the body");
+				$("#DI").text("28%");
+				$("#CC").text("21%");
+				$("#IHD").text("25%");
+				$("#IS").text("26%");
+
+				break;
+			default:
+
+		}
+		$('.chart').data('easyPieChart').update(printScore)
+		$('#precentage').text(printScore.toFixed(2));
 	})
 	//health_tips below
 
@@ -139,29 +217,35 @@ $(document).ready(function(){
 		return tips[tips_index];
 	}
 
-	$("#Home_page_health_tips").text(function(){
+	function randomDisplayHealthTips(){
 		var tips = ["Sugary drinks are the most fattening things you can put into your body.",
 								"Despite being high in fat, nuts are incredibly nutritious and healthy.",
 								"All the processed junk foods in the diet are the biggest reason the world is fatter and sicker than ever before.",
-								"Coffee has been unfairly demonized. The truth is that it's actually very healthy.",
+								"Start the day with a healthy breakfast. It refuels the body and provides energy for the day.",
 								"Pretty much everyone agrees that fish is healthy.",
 								"The importance of getting enough quality sleep can not be overstated.",
-								"The bacteria in your gut, collectively called the gut microbiota, are sometimes referred to as the forgotten organ.",
+								"Let kids help plan and prepare 1 meal each week.",
 								"Drinking enough water can have numerous benefits.",
-								"Meat can be a nutritious and healthy part of the diet. It is very high in protein, and contains various important nutrients.",
+								"Eat together as a family as often as possible.",
 								"Back in the day, most people got their vitamin D from the sun.",
 								"Vegetables and fruits are the default health foods, and for good reason.",
-								"Eating enough protein is incredibly important, and many experts believe that the recommended daily intake is too low.",
-								"Doing aerobic exercise (or cardio) is one of the best things you can do for your mental and physical health.",
-								"If you're a tobacco smoker, or abuse drugs, then diet and exercise are the least of your worries. Tackle those problems first.",
+								"Serve a variety of foods.",
+								"Include physical activity in your daily routine. Walk as a family before or after meals.",
+								"Make playtime with your family fun. Be active by shooting hoops or playing tag.",
 								"Extra virgin olive oil is the healthiest fat on the planet.",
 								"Added sugar is the single worst ingredient in the modern diet.",
 								"Don't Eat a Lot of Refined Carbohydrates",
-								"The war on saturated fat was a mistake.",
-								"Lifting weights is one of the best things you can do to strengthen your body and improve your body composition.",
+								"Include activities, such as hiking or biking, when you go on vacation.",
+								"Know your daily calorie needs. Balance calories you consume with calories you burn.",
 								"Artificial trans fats are harmful, man-made fats that are strongly linked to inflammation and heart disease."];
 		var tips_index = parseInt(Math.random()*tips.length);
 		return tips[tips_index];
+	}
+	$("#refreash").css("background","transparent").css("color","white").css("border", "none").css("float","right");
+	$("#Home_page_health_tips").text(randomDisplayHealthTips());
+	$("#tipsDiv").on("click","#refreash",function(){
+		$("#Home_page_health_tips").text(randomDisplayHealthTips());
 	})
+
 })
 //@ Finlay JS

@@ -13,7 +13,7 @@
     <script src="{% static 'myjs/myjs.js'%}"></script>
   </head>
   <body>
-    <header class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
+    <header class="navbar navbar-expand-lg fixed-top navbar-light" style="background-color: #e3f2fd;">
       <a class="navbar-brand" href="#">NewClear</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -22,7 +22,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="{%url 'VICHealth_app:index'%}">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="{%url 'VICHealth_app:index'%}">Home </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{%url 'VICHealth_app:check_activity_level'%}">Check Activity Level</a>
@@ -33,25 +33,6 @@
           <li class="nav-item">
             <a class="nav-link" href="{%url 'VICHealth_app:health_tips'%}">Healthy Tips</a>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
-            </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-            </li>
-          </ul>
-          <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-          </form>
         </div>
     </header>
     <br>
@@ -72,19 +53,12 @@
             <a href="{%url 'VICHealth_app:check_activity_level'%}" class="myButton" style="color:white;margin-right:21%"><b>Check Activity Level</b></a>
             <a href="{%url 'VICHealth_app:sub_info'%}" class="myButton" style="color:white"><b>Check Suburb Info</b></a>
           </div>
-          <div id="" style="color:white; width:350px;margin-left:100px;font-family: 'Indie Flower', cursive;font-size:25px">
+          <div id="tipsDiv" style="color:white; width:350px;margin-left:100px;font-family: 'Indie Flower', cursive;font-size:25px">
             <p><b>Health tips</b>: <span id="Home_page_health_tips"></span> </p>
-            <a href="{%url 'VICHealth_app:health_tips'%}" style="margin-left:130px;color:white;font-size:20px">learn more</a>
+            <button type="button" id="refreash" class="refreash"><u><b>refreash</b></u></button>
           </div>
         </div>
 
     </div>
-
-    <footer class="navbar fixed-bottom navbar-light bg-light">
-      <div class="container">
-          <a class="navbar-brand" href="#">TA14 | Finlay | Zhe
-          | Jane | Hong </a>
-      </div>
-    </footer>
   </body>
 </html>
