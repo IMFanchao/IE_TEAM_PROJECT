@@ -1,174 +1,401 @@
 <!DOCTYPE html>
 {% load staticfiles %}
 <html lang="en" dir="ltr">
-
-<head>
-  <meta charset="utf-8">
-  <title>Home</title>
+  <head>
+    <meta charset="utf-8">
+    <title>VICHealth</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAPLzx2XWLc_6CBb5m9XXEz5pv_wTprUsA&callback=initMap" type="text/javascript"></script>
-</head>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="{% static 'mycss/CAL.css'%}">
+  <link rel="stylesheet" href="{% static 'mycss/sub_info.css'%}">
+  <style type="text/css">
+        .tab {
+      overflow: hidden;
+      border: 1px solid #ccc;
+      background-color: #f1f1f1;
+    }
+  .tab button{
+    font-size: 20px;
+      background-color: inherit;
+      float: left;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 14px 16px;
+      transition: 0.3s;
+    }
 
-<body>
-  <header class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
-    <a class="navbar-brand" href="{%url 'VICHealth_app:index'%}">Activity4Children</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+  .tab button:hover {
+      background-color: #ddd;
+    }
+  .vtab{
+    display: none;
+    float: left;
+      border: 1px solid #ccc;
+      background-color: #f1f1f1;
+      width: 15%;
+      height: 1000px;
+  }
+  .vtab button{
+      display: block;
+      background-color: inherit;
+      color: black;
+      padding: 22px 16px;
+      width: 100%;
+      border: none;
+      outline: none;
+      text-align: left;
+      cursor: pointer;
+    transition: 0.3s;
+    font-size: 17px;
+  }
+  .vtab button:hover {
+      background-color: #ddd;
+    }
+  .ac_detail{
+    display: none;
+    }
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="{%url 'VICHealth_app:index'%}">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{%url 'VICHealth_app:check_activity_level'%}">Check Activity Level</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{%url 'VICHealth_app:sub_info'%}">Suburb Information</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{%url 'VICHealth_app:health_tips'%}">Healthy Tips</a>
-        </li>
+      </style>
+    </head>
+    <body>
+      <header class="navbar navbar-expand-lg fixed-top navbar-light" style="background-color: #e3f2fd;">
+        <a class="navbar-brand" href="{%url 'VICHealth_app:index'%}">Activity4Children</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="{%url 'VICHealth_app:index'%}">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{%url 'VICHealth_app:check_activity_level'%}">Check Activity Level</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{%url 'VICHealth_app:sub_info'%}">Suburb Information</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{%url 'VICHealth_app:health_tips'%}">Activity Intensity</a>
+            </li>
+          </div>
+      </header>
+      <br>
+      <br>
+  <div class="container">
+    <div class="row" style="height:800px; background: rgba(255, 255, 255, .7)">
+      <div class="col-md-4">
+      <div style="height:5%"></div>
+      <div id="test" style="height:20px;"></div>
+      <div id="tableDiv" style="height:20px"></div>
+      </div>
+      <div class="col-md-8">
+        <!--Input form -->
+        <div style="height:5%"></div>
+        <div style="width:90%;margin:2% auto">
+          <section class="search-sec">
+          <div class="container">
+              <form action="#" method="post" novalidate="novalidate">
+                  <div class="row">
+                      <div class="col-lg-12">
+                          <div class="row">
+                              <div class="col-lg-4 col-md-4 col-sm-12 p-0">
+                                  <input type="text" class="form-control search-slt" placeholder="Postcode/suburb name" id="suburb">
+                              </div>
+                                <div class="col-lg-4 col-md-4 col-sm-12 p-0">
+                                  <select class="form-control search-slt" id="activity">
+                                      <option>Select Activity</option>
+                                      <option>Swimming</option>
+                                      <option>Walking</option>
+                                      <option>Martial art</option>
+                                      <option>Football</option>
+                                      <option>Soccer</option>
+                                      <option>Basketball</option>
+                                      <option>Athlete clubs</option>
+                                      <option>Athlete clubs</option>
+                                      <option>Little athletes</option>
+                                  </select>
+                              </div>
+                              <div class="col-lg-4 col-md-4 col-sm-12 p-0">
+                                  <button type="button" class="btn btn-success wrn-btn" onclick="updateMap()">Search</button>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </form>
+          </div>
+      </section>
+          </div>
+          <!--Google map feature -->
+          <div id="googleMap" style="width:90%;height:600px;margin-bottom:5% auto"></div>
+        </div>
+      </div>
     </div>
-  </header>
-  <br>
-  <br>
-  <div class="container" style="background:grey;">
-    <div id="test" style="height:20px;"></div>
-    <!--Input form -->
-    <div style="width:90%;background:white;margin:0 auto">
-      <form id="inputform" method="post">
-        <input type="text" name="suburb" id="suburb" placeholder="Your suburb">
-        <input type="text" name="activity" id="activity" placeholder="Your activity">
-        {% csrf_token %}
-        <input type="button" class="btn btn-primary" value="Check" onclick="updateMap()">
-      </form>
-    </div>
-    <!--Google map feature -->
-    <div id="googleMap" style="width:90%;height:500px;margin:0 auto"></div>
-    <script>
-      var map;
-      var gMarkersOg = new Array();
-      var gMarkers = new Array();
+</body>
+</html>
 
-      function myMap() {
-        var mapProp = {
-          //Center is Victoria
-          center: new google.maps.LatLng(-37.4, 144.7),
-          zoom: 8,
-        };
-        map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
-        map.setMapTypeId(google.maps.MapTypeId.HYBRID);
+<script>
+  var map;
+  var gMarkersOg = new Array();
+  var gMarkers = new Array();
 
-        //Set center to user location
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(function(position) {
-            initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-            map.setCenter(initialLocation);
-          });
+  function myMap() {
+    var mapProp = {
+      //Center is Victoria
+      center: new google.maps.LatLng(-37.4, 144.7),
+      zoom: 12,
+    };
+    map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+
+    //Set center to user location
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+        map.setCenter(initialLocation);
+      });
+    }
+
+  }
+  myMap();
+
+  /**
+  Click check button to update the map
+  */
+  function updateMap() {
+      // Clear markers
+      if(gMarkers.length > 0) {
+        for(i=0 ; i<gMarkers.length ; i++) {
+          gMarkers[i].setMap(null);
         }
-
+        gMarkers = new Array();
       }
-      myMap();
+    //search suburb
+    //Suburb from user input
+    var suburb = document.getElementById("suburb").value;
+    //Type of activity from user input
+    var activity = document.getElementById("activity").value;
+    var geocoder = new google.maps.Geocoder();
 
-      /**
-      Click check button to update the map
-      */
-      function updateMap() {
-        // Clear suburb markers
-          if(gMarkersOg.length > 0) {
-            for(i=0 ; i<gMarkersOg.length ; i++) {
-              gMarkersOg[i].setMap(null);
+    //suburb for comparing with user input
+    var suburbStr = suburb.toString().toUpperCase();
+    //type of activity for comparing with user input
+    var activityStr = activity.toString().toUpperCase();
+    //Marker initialLocation
+    var url = "http://maps.google.com/mapfiles/ms/micons/";
+    //Check whether there is a activity user input
+    var flag = 0;
+    //Array to record place_id
+    var placeIds = new Array();
+    //Create table from database
+    var tableHTML = "<table border=1 width=100%><tr><th align=center>Name</th><th align=center>Adress</th><th align=center>Type</th></tr>";
+
+    if (suburb != null && suburb != "") {
+      if (activity != null && activity!= "") {
+        {%for mark in club %}
+          //Name from the table club
+          var name= '{{mark.name}}'.toString();
+          //Address from the table club
+          var address = '{{mark.address}}'.toString();
+          //Postcode from the table club
+          var postcode = '{{mark.postcode}}'.toString().toUpperCase();
+          //Suburb from the table club
+          var markSuburb = '{{mark.suburb}}'.toString().toUpperCase();
+          //Type of activity from the table club
+          var category = '{{mark.type}}'.toString().toUpperCase();
+          //Set title equals to place_id in order to avoid duplicate
+          var title = '{{mark.place_id}}'.toString().toUpperCase();
+          //Marker initialLocation
+          var url = "http://maps.google.com/mapfiles/ms/micons/";
+          var url_address = "https://www.google.com/maps/dir/?api=1&" +
+            "origin=Current+Location&" + "destination=" + "{{mark.latitude}}"
+            + "," + "{{mark.longitude}}";
+
+        if (postcode === suburb || markSuburb.match(suburbStr) != null) {
+            var point = new google.maps.LatLng({{mark.latitude}}, {{mark.longitude}});
+            if(category.match('SWIM') != null) {
+              url +=  "blue-dot.png";
+            }else if(category.match('FIT') != null) {
+              url +=  "purple-dot.png";
+            }else if(category.match('GYM') != null) {
+              url +=  "purple-dot.png";
+            }else if(category.match('TRAIN') != null) {
+              url +=  "purple-dot.png";
+            }else if(category.match('DISABILITY') != null) {
+              url += "pink-dot.png";
+            }else if(category.match('PARK') != null) {
+              url += "green-dot.png";
+            }else if(category.match('MARTIAL') != null) {
+              url += "orange-dot.png";
+            }else if(category.match('FOOTBALL') != null) {
+              url += "ltblue-dot.png";
+            }else if(category.match('SOCCER') != null) {
+              url += "ltblue-dot.png";
+            }else if(category.match('TENNIS') != null) {
+              url += "ltblue-dot.png";
+            }else if(category.match('NETBALL') != null) {
+              url += "ltblue-dot.png";
+            }else if(category.match('SPORT') != null) {
+              url += "ltblue-dot.png";
+            }else {
+              url += "red-dot.png";
             }
-          gMarkersOg = new Array();
+            var marker = new google.maps.Marker({
+              position: point,
+              map: map,
+              title: title,
+              animation: google.maps.Animation.DROP,
+              icon: {
+                url: url
+              }
+            });
+            marker['infowindow'] = new google.maps.InfoWindow({
+              content: "<h6>{{mark.name}}</h6> <br> {{ mark.address }} ",
+            });
+            if(category.match(activityStr) != null) {
+              marker.setAnimation(google.maps.Animation.BOUNCE);
+              marker.setZIndex(google.maps.Marker.MAX_ZINDEX + 1);
+              placeIds.push(marker.getTitle());
+              marker.setTitle(marker.getTitle() + "1");
+              //Add entry to table
+              tableHTML += "<tr><td align=center>"+name+"</td>";
+              tableHTML += "<td align=center><a href=\""+url_address+"\">"+address+"</a></td>";
+              tableHTML += "<td align=center>"+category+"</td></tr>";
+              flag = 1;
+            }
+            google.maps.event.addListener(marker, 'click', function() {
+              window.open(url_address);
+              //map.setZoom(12);
+            });
+            google.maps.event.addListener(marker, 'mouseover', function() {
+              // this['infowindow'].open(map, this);
+              this['infowindow'].open(map, this);
+            });
+            google.maps.event.addListener(marker, 'mouseout', function() {
+              // this['infowindow'].close(map, this);
+              this['infowindow'].close(map, this);
+            });
+            gMarkers.push(marker);
           }
-          // Clear actvity markers
-          if(gMarkers.length > 0) {
-            for(i=0 ; i<gMarkers.length ; i++) {
+        {% endfor %}
+
+        tableHTML += "</tr></table>";
+        document.getElementById("tableDiv").innerHTML = tableHTML;
+
+
+        document.getElementById("test").innerHTML = gMarkers.length;
+        for(i=0 ; i<gMarkers.length ;i++) {
+          for(j=0 ; j<placeIds.length ;j++) {
+            if(gMarkers[i].getTitle.equals(placeIds[j])) {
               gMarkers[i].setMap(null);
             }
-            gMarkers = new Array();
           }
+        }
+          if(flag == 0) {
+              window.alert("Acitivity not found in this suburb!");
 
-        //search suburb
-        var suburb = document.getElementById("suburb").value;
-        var activity = document.getElementById("activity").value;
-        var geocoder = new google.maps.Geocoder();
+          }
+          geocoder.geocode({'address': suburb, componentRestrictions: { country: 'AU'}},
+            function(results, status) {
+              if (status == google.maps.GeocoderStatus.OK) {
+                map.setCenter(results[0].geometry.location);
+                map.setZoom(14);
+              }else {
+                window.alert('Geocode was not successful for the following reason: ' + status);
+              }
+            });
 
-        if (suburb != null && suburb != "") {
 
-                {%for mark in club %}
-                  var postcode = '{{mark.postcode}}'.toString().toUpperCase();
-                  var markSuburb = '{{mark.suburb}}'.toString().toUpperCase();
-                  var suburbStr = suburb.toString().toUpperCase();
-                  document.getElementById('test').innerHTML = postcode + " " + markSuburb + " " + suburbStr;
-              if (postcode === suburb || markSuburb.match(suburbStr) != null) {
-                  var point = new google.maps.LatLng({{mark.latitude}}, {{mark.longitude}});
-                  var marker = new google.maps.Marker({
-                    position: point,
-                    map: map,
+      }else {
+        /**
+        * User input postcode without activity
+        */
+        {%for mark in club %}
+          //Postcode from database
+          var postcode = '{{mark.postcode}}'.toString().toUpperCase();
+          //Suburb from databease
+          var markSuburb = '{{mark.suburb}}'.toString().toUpperCase();
+          //Type of activity from database
+          var category = '{{mark.type}}'.toString().toUpperCase();
+          //Marker initialLocation
+          var url = "http://maps.google.com/mapfiles/ms/micons/";
+        if (postcode === suburb || markSuburb.match(suburbStr) != null) {
+            var point = new google.maps.LatLng({{mark.latitude}}, {{mark.longitude}});
+            if(category.match('SWIM') != null) {
+              url +=  "blue-dot.png";
+            }else if(category.match('FIT') != null) {
+              url +=  "purple-dot.png";
+            }else if(category.match('GYM') != null) {
+              url +=  "purple-dot.png";
+            }else if(category.match('TRAIN') != null) {
+              url +=  "purple-dot.png";
+            }else if(category.match('DISABILITY') != null) {
+              url += "pink-dot.png";
+            }else if(category.match('PARK') != null) {
+              url += "green-dot.png";
+            }else if(category.match('MARTIAL') != null) {
+              url += "orange-dot.png";
+            }else if(category.match('FOOTBALL') != null) {
+              url += "ltblue-dot.png";
+            }else if(category.match('SOCCER') != null) {
+              url += "ltblue-dot.png";
+            }else if(category.match('TENNIS') != null) {
+              url += "ltblue-dot.png";
+            }else if(category.match('NETBALL') != null) {
+              url += "ltblue-dot.png";
+            }else if(category.match('SPORT') != null) {
+              url += "ltblue-dot.png";
+            }else {
+              url += "red-dot.png";
+            }
+
+            var marker = new google.maps.Marker({
+              position: point,
+              map: map,
+              animation: google.maps.Animation.DROP,
+              icon: {
+                url: url
+              }
+            });
+            marker['infowindow'] = new google.maps.InfoWindow({
+              content: "<h6>{{mark.name}}</h6> <br> {{ mark.address }} ",
+            });
+
+            google.maps.event.addListener(marker, 'click', function() {
+              window.open("https://www.google.com/maps/dir/?api=1&query=" + "{{mark.latitude}}"
+                + "," + "{{mark.longitude}}");
+              //map.setZoom(12);
+            });
+            google.maps.event.addListener(marker, 'mouseover', function() {
+              // this['infowindow'].open(map, this);
+              this['infowindow'].open(map, this);
+            });
+            google.maps.event.addListener(marker, 'mouseout', function() {
+              // this['infowindow'].close(map, this);
+              this['infowindow'].close(map, this);
+            });
+
+            gMarkers.push(marker);
+          }
+        {% endfor %}
+                geocoder.geocode({'address': suburb, componentRestrictions: { country: 'AU'}},
+                function(results, status) {
+                    if (status == google.maps.GeocoderStatus.OK) {
+                      map.setCenter(results[0].geometry.location);
+                      map.setZoom(14);
+                      }else {
+                        window.alert('Geocode was not successful for the following reason: ' + status);
+                      }
                   });
-                  marker['infowindow'] = new google.maps.InfoWindow({
-                    content: "<h6>{{mark.name}}</h6> <br> {{ mark.address }} ",
-                  });
-                  marker.setAnimation(google.maps.Animation.DROP);
-
-                  google.maps.event.addListener(marker, 'click', function() {
-                    //window.location.href = this.url;
-                    //map.setCenter(point);
-                    //map.setZoom(12);
-                  });
-                  google.maps.event.addListener(marker, 'mouseover', function() {
-                    // this['infowindow'].open(map, this);
-                    this['infowindow'].open(map, this);
-                  });
-                  google.maps.event.addListener(marker, 'mouseout', function() {
-                    // this['infowindow'].close(map, this);
-                    this['infowindow'].close(map, this);
-                  });
-
-                  gMarkersOg.push(marker);
-                  }
-                  {% endfor %}
-                  if(gMarkersOg.length == 0) {
-                    window.alert("Acitivity not found in this suburb!");
-                  } else {
-                    geocoder.geocode({'address': suburb, componentRestrictions: { country: 'AU'}},
-                    function(results, status) {
-                        if (status == google.maps.GeocoderStatus.OK) {
-                          map.setCenter(results[0].geometry.location);
-                          map.setZoom(12);
-                          }else {
-                            window.alert('Geocode was not successful for the following reason: ' + status);
-                          }
-                        });
-                  }
-
       }
-
-
-
-      if (activity != null && activity!= "") {
-        //Clean privous markers
-        if(gMarkersOg.length > 0) {
-          for(i=0 ; i<gMarkersOg.length; i++) {
-            gMarkersOg[i].setMap(null);
-          }
-          gMarkersOg = new Array();
-        }
-
-        if(gMarkers.length > 0) {
-          for(i=0 ; i<gMarkers.length; i++) {
-            gMarkers[i].setMap(null);
-          }
-          gMarkers = new Array();
-        }
-
-        //Create new markers
+    }else {
+        // User input activity without postcode
         {% for mark in club %}
         var category = '{{mark.type}}'.toString().toUpperCase();
         var activityStr = activity.toString().toUpperCase();
@@ -178,18 +405,15 @@
           var point = new google.maps.LatLng({{mark.latitude}}, {{mark.longitude}});
           var marker = new google.maps.Marker({
               position: point,
-              map: map,
+              map: map
             });
             marker['infowindow']  = new google.maps.InfoWindow({
                        content: "<h6>{{mark.name}}</h6> <br> {{ mark.address }} ",
           });
 
-          if (marker.getAnimation() != google.maps.Animation.BOUNCE) {
-            marker.setAnimation(google.maps.Animation.BOUNCE);
-          }
-
               google.maps.event.addListener(marker, 'click', function() {
-                  //window.location.href = this.url;
+                window.open("https://www.google.com/maps/dir/?api=1&query=" + '{{mark.latitude}}'
+                  + "," + '{{mark.longitude}}');
                   //map.setCenter(point);
                   //map.setZoom(12);
               });
@@ -207,12 +431,11 @@
         {% endfor %}
         if(gMarkers.length == 0) {
           window.alert("We do not have record about this type of activity!");
+        }else {
+          map.setZone(12);
         }
       }
-      }
-    </script>
-    <div style="height:20px;"></div>
-  </div>
-</body>
 
-</html>
+
+  }
+</script>
