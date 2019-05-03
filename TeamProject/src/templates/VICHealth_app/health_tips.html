@@ -1,34 +1,4 @@
-<!DOCTYPE html>
-{% extends "VICHealth_app/base.html"%}
- {%block body_block%}
-
-	<div class="tab">
-  		<button class="Types"  onclick="changeType(event,'HIA')">High Intensive Activity</button>
-  		<button class="Types"  onclick="changeType(event,'NIA')">Normal Intensive Activity</button>
-	</div>
-
-	<div class="vtab" id ="HIA" style="display:block">
-    <button class="ac_name" onclick="seeDetails(event,'soccer')">soccer</button>
-    <button class="ac_name" onclick="seeDetails(event,'football')">football</button>
-	</div>
-	<div class="vtab" id ="NIA">
-    <button class="ac_name" onclick="seeDetails(event,'walking')">walking</button>
-    <button class="ac_name" onclick="seeDetails(event,'bicycling')">bicycling</button>
-	</div>
-
-	<div class="ac_detail" id="walking">Walking is already part of our daily life but try walk fast with kids! A recommended walking steps for children from age 8 can be different: 12,000 steps for girls per day and for boys a recommendation would be 15,000 steps per day.</div>
-	<div class="ac_detail" id="bicycling">
-    <p>
-      Whether you're young or old, athletic or sedentary, bicycling is an enjoyable and healthy way to travel and experience the outdoors. Done vigorously, it gives the heart and circulatory system a workout and can burn more than 500 calories per hour. The development of new types of bicycles—notably the hybrid, which combines the speed of a road bike and the ruggedness of a mountain bike—has made riding easier and offers more options to suit your specific needs. What's more, cyclists now have more places to ride. Here, ways to improve your performance, safety and comfort when cycling.
-    </p>
-    <p>
-      More than 6,000 cyclists seek emergency care for head injuries each year in the U.S., and head trauma accounts for 75 percent of cycling fatalities. Used properly, bike helmets are nearly 90 percent effective in preventing brain injuries. Choose a helmet that meets the standards of the U.S. Consumer Product Safety Commission. Or, look for a sticker from the Snell Memorial Foundation or the American Society of Testing and Materials. Pick a bright color and a helmet that fits snugly.
-    </p>
-    <p>
-      Buying a new bike? To find the right frame size for your body, straddle the bike and stand flat-footed. On a road bike, there should be one to two inches of clearance between your groin and the top tube. On a mountain bike, the clearance should be at least two inches.Your handlebars should be one inch lower than your seat top. Buy your bicycle from a reputable dealer who will help you find the right bike and fit.
-    </p>
-  </div>
-	<div class="ac_detail" id="soccer" style="font-size: 16px;">
+<div class="ac_detail" id="soccer" style="font-size: 16px;">
     <p>Although several experts suggest that it is better <strong><font color="skyblue">to start playing soccer at 8 years old</font></strong>, lots of Australian kids actually start at aged 5. It is better to ask your children whether they have an interest.</p>
     <p><strong><font color="limegreen">Soccer</font></strong> is a safer game without too much contacts, which can combine the fundamental skills such as running and catching. This activity can help <strong><font color="orange">improve cardiovascular health condition</font></strong>.</p>
     <p>For children aged from 5 to 7, an organized soccer game should <strong><font color="red">address fun</font></strong> more than competitiveness.</p>
@@ -36,10 +6,10 @@
     <br>
     <br>
     <strong>Relative website:</strong><br>
-    <a href="https://australiansportscamps.com.au/blog/how-to-get-your-kids-aged-5-12-into-soccer/">HOW TO GET KIDS (AGED 5-12) INTO SOCCER</a><br>
-    <a href="https://www.tandfonline.com/doi/abs/10.3810/psm.2000.02.699">Exercise and Children's Health</a><br>
-    <a href="https://www.usyouthsoccer.org/news/sports_training_-_how_much_is_too_much/">how much is too much</a><br>
-    <a href="https://www.amplifiedsoccerathlete.com/coachguide/overtraining-how-much-is-too-much">overtraining how much is too much</a><br>
+    <a href="https://australiansportscamps.com.au/blog/how-to-get-your-kids-aged-5-12-into-soccer/" target="_blank">HOW TO GET KIDS (AGED 5-12) INTO SOCCER</a><br>
+    <a href="https://www.tandfonline.com/doi/abs/10.3810/psm.2000.02.699" target="_blank">Exercise and Children's Health</a><br>
+    <a href="https://www.usyouthsoccer.org/news/sports_training_-_how_much_is_too_much/" target="_blank">how much is too much</a><br>
+    <a href="https://www.amplifiedsoccerathlete.com/coachguide/overtraining-how-much-is-too-much" target="_blank">overtraining how much is too much</a><br>
   </div>
   <div class="ac_detail" id="football" style="font-size: 16px;">
     <p><strong><font color="limegreen">Australian rules football</font></strong> is considered a type of high-intensity sports which helps your kids to strengthen their muscle and keep them focused. Moreover, it can efficiently improve <strong><font color="skyblue">the quality of heart and blood vessels condition</font></strong>.</p><br>
@@ -48,42 +18,9 @@
     <br>
     <br>
     <strong>Relative website:</strong><br>
-    <a href="https://australiansportscamps.com.au/blog/list-of-year-round-kids-sports/">AUSSIE SPORTS THAT KIDS CAN PLAY ALL YEAR ROUND</a><br>
-    <a href="http://www.nutritionaustralia.org/national/resource/cardiovascular-health">Cardiovascular Health</a><br>
-    <a href="https://play.afl/juniorfootball">suggestions for australia football</a><br>
-    <a href="https://play.afl/auskick">Auskick program</a><br>
+    <a href="https://australiansportscamps.com.au/blog/list-of-year-round-kids-sports/" target="_blank">AUSSIE SPORTS THAT KIDS CAN PLAY ALL YEAR ROUND</a><br>
+    <a href="http://www.nutritionaustralia.org/national/resource/cardiovascular-health" target="_blank">Cardiovascular Health</a><br>
+    <a href="https://play.afl/juniorfootball" target="_blank">suggestions for australia football</a><br>
+    <a href="https://play.afl/auskick" target="_blank">Auskick program</a><br>
 
 </div>
-
-
-    <script>
-  		function changeType(evt, type) {
-  			// body...
-  			var i, tablink, tabcontent
-  			tabcontent = document.getElementsByClassName("vtab");
-  			for (i = 0; i < tabcontent.length; i++) {
-  				tabcontent[i].style.display = "none";
-  			}
-  			tablink = document.getElementsByClassName("Type");
-  			for (i = 0; i < tablink.length; i++){
-  				tablink[i].className = tablink[i].className.replace(" active", "");
-  			}
-  			document.getElementById(type).style.display = "block";
-    			evt.currentTarget.className += " active";
-  		}
-
-  		function seeDetails(evt, ac_name){
-  			var i, names, ac
-  			ac = document.getElementsByClassName("ac_detail");
-  			for (i = 0; i < ac.length; i++) {
-  				ac[i].style.display = "none";
-  			}
-  			names = document.getElementsByClassName("ac_name");
-  			for (i = 0; i < ac.length; i++){
-  				names[i].className =names[i].className.replace(" active", "")
-  			}
-  			document.getElementById(ac_name).style.display = "block";
-  			evt.currentTarget.className += " active";
-  		}
-  	</script>
-{% endblock %}
